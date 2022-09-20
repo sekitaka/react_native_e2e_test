@@ -8,6 +8,9 @@ In package.json, dependencies block is maybe correct. But devDependencies block 
 You can replace version specified devDependencies block from [upgrade-helper](https://react-native-community.github.io/upgrade-helper/?from=0.62.3&to=0.70.1).
 After replacing to correct devDependencies block, you can run the app correctly.
 
+# Detox
+Detox 19.x requires jest 27.x [here(https://wix.github.io/Detox/docs/guide/jest/)]
+
 # TIPS
 ## React Native: Unexpected token ':'. Expected a ')' or a ',' after a parameter declaration.
 ```

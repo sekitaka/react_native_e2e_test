@@ -26,3 +26,14 @@ npm ci
 # Re-run
 ```
 
+## ESLint: 'describe' is not defined.(no-undef)
+I got this eslint error firstTest.e2e.js.
+I need to add eslint plugins. These packages are eslint-plugin-jest and eslint-plugin-detox.
+I also needed to edit .eslintrc.js to add plugins.
+I also add `/* eslint-env detox/detox, jest */` into firstTest.e2e.js's top line.
+
+https://www.npmjs.com/package/eslint-plugin-jest
+https://www.npmjs.com/package/eslint-plugin-detox
+
+## What matcher can I use with Detox?
+https://wix.github.io/Detox/docs/api/expect/

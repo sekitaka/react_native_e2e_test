@@ -12,3 +12,8 @@ Xcode: 13.4.1
 ```
 npx react-native run-ios --simulator='iPhone 13 mini'
 ```
+
+# Run detox e2e test
+```
+detox test -c ios
+```

@@ -4,8 +4,10 @@
   "skipLegacyWorkersInjection": true,
   "apps": {
     "ios": {
+      "name": "e2eExample",
       "type": "ios.app",
-      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY"
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/e2eExample.app",
+      "build": "xcodebuild -workspace ios/e2eExample.xcworkspace -scheme e2eExample -sdk iphonesimulator -derivedDataPath ios/build"
     },
     "android": {
       "type": "android.apk",

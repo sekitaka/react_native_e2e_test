@@ -16,6 +16,21 @@ detox init -r jest
 ## .detoxrc.json
 It is a setting file. You can specify which simulator you use.
 
+# Appium
+Appium requires appium drivers each platform. [For iOS:XCUITest driver](https://appium.io/docs/en/drivers/ios-xcuitest/index.html) [For android:Uiautomator2 driver](https://appium.io/docs/en/drivers/android-uiautomator2/index.html)
+Understanding driver is important.
+
+## About element selectors
+Mobile application's selector documentation is here.
+https://webdriver.io/docs/selectors/#mobile-selectors
+
+```
+# find by id
+client.$('~buttonId');
+```
+
+
+
 # TIPS
 ## React Native: Unexpected token ':'. Expected a ')' or a ',' after a parameter declaration.
 ```

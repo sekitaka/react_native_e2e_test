@@ -13,7 +13,19 @@ Xcode: 13.4.1
 npx react-native run-ios --simulator='iPhone 13 mini'
 ```
 
+# Build target application
+```
+npx react-native bundle --entry-file index.js --platform ios --bundle-output ios/main.js.bundle --dev true
+```
+
 # Run detox e2e test
 ```
 detox test -c ios
 ```
+
+# Run appium e2e test
+```
+npx react-native run-ios --simulator='iPhone 13 mini'
+jest -c jest.appium.json
+```
+

@@ -20,6 +20,7 @@ npx react-native bundle --entry-file index.js --platform ios --bundle-output ios
 
 # Run detox e2e test
 ```
+detox build -c ios
 detox test -c ios
 ```
 

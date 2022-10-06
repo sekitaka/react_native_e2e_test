@@ -37,5 +37,8 @@
       "device": "emulator",
       "app": "android"
     }
+  },
+  "artifacts": {
+    "rootDir": "./detox_artifacts"
   }
 }

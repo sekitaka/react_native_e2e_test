@@ -13,8 +13,8 @@ describe('Example', () => {
     await expect(element(by.id('textId'))).toHaveText('Ready?');
   });
 
-  it('should show "Go" after tap', async () => {
-    await element(by.id('buttonId')).tap();
-    await expect(element(by.id('textId'))).toHaveText('Go');
-  });
+  // it('should show "Go" after tap', async () => {
+  //   await element(by.id('buttonId')).tap();
+  //   await expect(element(by.id('textId'))).toHaveText('Go');
+  // });
 });

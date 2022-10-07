@@ -9,8 +9,6 @@ jobs:
     runs-on: macos-12
     steps:
       - run: echo "JOB1"
-      - run: ls ~/Library/Detox
-      - run: ls ~/Library/Detox/ios
       - run: node -v
       - run: brew tap wix/brew
       - run: brew install applesimutils
@@ -50,6 +48,8 @@ jobs:
         with:
           path: ~/Library/Detox
           key: detox-1
+      - run: ls ~/Library/Detox
+      - run: ls ~/Library/Detox/ios
       - name: Build app for e2e test
         run: $(npm bin)/detox build -c ios
       - name: Run e2e test

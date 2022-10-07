@@ -52,6 +52,7 @@ jobs:
       - run: ls ~/Library/Detox/ios
       - name: Build app for e2e test
         run: $(npm bin)/detox build -c ios
+      - run: ls ~/Library/Detox/ios
       - name: Run e2e test
         run: $(npm bin)/detox test -c ios
       - name: Archive e2e test artifacts

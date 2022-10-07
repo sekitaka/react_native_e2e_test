@@ -7,7 +7,7 @@
       "name": "e2eExample",
       "type": "ios.app",
       "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/e2eExample.app",
-      "build": "xcodebuild -workspace ios/e2eExample.xcworkspace -scheme e2eExample -sdk iphonesimulator -derivedDataPath ios/build"
+      "build": "xcodebuild -workspace ios/e2eExample.xcworkspace -scheme e2eExample -sdk iphonesimulator -derivedDataPath ios/build --arch x86_64"
     },
     "android": {
       "type": "android.apk",
@@ -39,6 +39,16 @@
     }
   },
   "artifacts": {
-    "rootDir": "./detox_artifacts"
+    "rootDir": "./detox_artifacts",
+    "plugins": {
+      "enabled": true,
+      "shouldTakeAutomaticSnapshots": false,
+      "keepOnlyFailedTestsArtifacts": false,
+      "takeWhen": {
+        "testStart": true,
+        "testDone": true,
+        "appNotReady": true
+      }
+    }
   }
 }

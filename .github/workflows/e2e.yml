@@ -18,6 +18,7 @@ jobs:
       - run: brew tap wix/brew
       - run: brew install applesimutils
 #      - run: open -a Simulator --args -CurrentDeviceUDID 36C5403E-AE1F-4A36-A56F-3977D534A281
+#      - run: open -a Simulator --args -CurrentDeviceUDID E27AC66A-6A39-4241-9044-0BCF25729CF0
       - run: open -a Simulator --args -CurrentDeviceUDID F01B2E98-79ED-4723-B4A7-B861190CB564
       #- run: open -a Simulator
       - run: xcrun simctl list | grep "iPhone 13 mini"
@@ -61,10 +62,12 @@ jobs:
       - run: ls ~/Library/Detox
       - run: ls ~/Library/Detox/ios
       - name: Build app for e2e test
-        run: $(npm bin)/detox build -c ios
+        run: detox build -c ios
+#        run: $(npm bin)/detox build -c ios
       - run: ls ~/Library/Detox/ios
       - name: Run e2e test
-        run: $(npm bin)/detox test -c ios --cleanup
+        run: detox test -c ios --cleanup
+#        run: $(npm bin)/detox test -c ios --cleanup
       - name: Archive e2e test artifacts
         uses: actions/upload-artifact@v3
         with:

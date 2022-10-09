@@ -9,6 +9,9 @@ jobs:
     runs-on: macos-12
     steps:
       - run: echo "JOB1"
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
       - run: node -v
       - run: brew tap wix/brew
       - run: brew install applesimutils
@@ -32,6 +35,10 @@ jobs:
         run: |
           npm ci
 #          npm install  --legacy-peer-deps
+      - run: npm install -g detox-cli
+      - run: npm install -g react-native-cli
+      - run: which detox
+      - run: which react-native
       - run: ls node_modules/.bin
       - name: Cache Pods
         id: cache-pods
@@ -55,7 +62,7 @@ jobs:
         run: $(npm bin)/detox build -c ios
       - run: ls ~/Library/Detox/ios
       - name: Run e2e test
-        run: $(npm bin)/detox test -c ios
+        run: $(npm bin)/detox test -c ios --cleanup
       - name: Archive e2e test artifacts
         uses: actions/upload-artifact@v3
         with:

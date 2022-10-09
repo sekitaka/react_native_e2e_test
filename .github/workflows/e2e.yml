@@ -29,7 +29,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-2
+          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-3
       - name: Install npm dependencies
         if: steps.cache-npm.outputs.cache-hit != 'true'
         run: |
@@ -45,7 +45,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ios/Pods
-          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-2
+          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-3
       - name: Pod install
         if: steps.cache-pods.outputs.cache-hit != 'true'
         run: pod install
@@ -55,7 +55,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/Library/Detox
-          key: detox-2
+          key: detox-3
       - run: ls ~/Library/Detox
       - run: ls ~/Library/Detox/ios
       - name: Build app for e2e test

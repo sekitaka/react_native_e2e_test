@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 14
       - run: node -v
+      - run: watchman -v || true
+      - run: brew install watchman
       - run: brew tap wix/brew
       - run: brew install applesimutils
 #      - run: open -a Simulator --args -CurrentDeviceUDID 36C5403E-AE1F-4A36-A56F-3977D534A281

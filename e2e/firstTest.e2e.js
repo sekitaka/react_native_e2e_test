@@ -16,5 +16,6 @@ describe('Example', () => {
   it('should show "Go" after tap', async () => {
     await element(by.id('buttonId')).tap();
     await expect(element(by.id('textId'))).toHaveText('Go');
+    const imagePath = await device.takeScreenshot('opened general section');
   });
 });

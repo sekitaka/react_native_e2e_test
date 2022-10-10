@@ -11,7 +11,7 @@ jobs:
       - run: echo "JOB1"
       - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
       - run: node -v
       - run: watchman -v || true
       - run: brew install watchman
@@ -32,7 +32,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-3
+          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-4
       - name: Install npm dependencies
         if: steps.cache-npm.outputs.cache-hit != 'true'
         run: |
@@ -48,19 +48,19 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ios/Pods
-          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-3
+          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-4
       - name: Pod install
         if: steps.cache-pods.outputs.cache-hit != 'true'
         run: pod install
         working-directory: ios
-      - name: Cache detox framework
-        id: cache-detox
-        uses: actions/cache@v2
-        with:
-          path: ~/Library/Detox
-          key: detox-3
-      - run: ls ~/Library/Detox
-      - run: ls ~/Library/Detox/ios
+#      - name: Cache detox framework
+#        id: cache-detox
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/Library/Detox
+#          key: detox-4
+#      - run: ls ~/Library/Detox
+#      - run: ls ~/Library/Detox/ios
       - name: Build app for e2e test
         run: detox build -c ios
 #        run: $(npm bin)/detox build -c ios

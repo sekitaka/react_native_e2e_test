@@ -1,0 +1,74 @@
+name: ios-e2e-test
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  e2e-test:
+    runs-on: macos-12
+    steps:
+      - run: echo "JOB1"
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: node -v
+      - run: watchman -v || true
+      - run: brew install watchman
+      - run: brew tap wix/brew
+      - run: brew install applesimutils
+#      - run: open -a Simulator --args -CurrentDeviceUDID 36C5403E-AE1F-4A36-A56F-3977D534A281
+#      - run: open -a Simulator --args -CurrentDeviceUDID E27AC66A-6A39-4241-9044-0BCF25729CF0
+      - run: open -a Simulator --args -CurrentDeviceUDID F01B2E98-79ED-4723-B4A7-B861190CB564
+      #- run: open -a Simulator
+      - run: xcrun simctl list | grep "iPhone 13 mini"
+      - uses: actions/checkout@v2
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+#          xcode-version: '12.5.1'
+          xcode-version: '13.4.1'
+      - name: Cache node_modules
+        id: cache-npm
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-5
+      - name: Install npm dependencies
+        if: steps.cache-npm.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+#          npm install  --legacy-peer-deps
+#      - run: which detox
+#      - run: which react-native
+      - run: ls node_modules/.bin
+      - name: Cache Pods
+        id: cache-pods
+        uses: actions/cache@v2
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-${{ hashFiles('ios/Podfile.lock') }}-5
+      - name: Pod install
+        if: steps.cache-pods.outputs.cache-hit != 'true'
+        run: pod install
+        working-directory: ios
+      - name: Cache detox framework
+        id: cache-detox
+        uses: actions/cache@v2
+        with:
+          path: ~/Library/Detox
+          key: detox-5
+      - run: ls ~/Library/Detox
+      - run: ls ~/Library/Detox/ios
+      - name: Build app for e2e test
+#        run: detox build -c ios
+        run: $(npm bin)/detox build -c ios
+      - run: ls ~/Library/Detox/ios
+      - name: Run e2e test
+#        run: detox test -c ios --cleanup
+        run: $(npm bin)/detox test -c ios --cleanup
+      - name: Archive e2e test artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Save e2e test artifacts
+          path: |
+            detox_artifacts

@@ -4,10 +4,23 @@ orbs:
 jobs:
   test:
     macos:
-      xcode: "13.4.1"
+      xcode: 13.4.1
     steps:
       - checkout
       - run: echo HELLO
+      - run: xcodebuild -version
+      - run: brew install watchman
+      - run: brew tap wix/brew
+      - run: brew install applesimutils
+      - run: npm ci
+      - run:
+          command: pod install
+          working_directory: "ios"
+      - run: $(npm bin)/detox build -c ios
+      - run: $(npm bin)/detox test -c ios --cleanup
+      - store_artifacts:
+          path: detox-artifacets
+          destination: detox-artifacts
 workflows:
   version: 2.1
   test:

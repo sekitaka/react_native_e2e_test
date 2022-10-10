@@ -38,8 +38,6 @@ jobs:
         run: |
           npm ci
 #          npm install  --legacy-peer-deps
-      - run: npm install -g detox-cli
-      - run: npm install -g react-native-cli
       - run: which detox
       - run: which react-native
       - run: ls node_modules/.bin

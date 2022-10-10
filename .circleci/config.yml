@@ -19,8 +19,8 @@ jobs:
       - run: $(npm bin)/detox build -c ios
       - run: $(npm bin)/detox test -c ios --cleanup
       - store_artifacts:
-          path: detox-artifacts
-          destination: detox-artifacts
+          path: detox_artifacts
+          destination: detox_artifacts
 workflows:
   version: 2.1
   test:

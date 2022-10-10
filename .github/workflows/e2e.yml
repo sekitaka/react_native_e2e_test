@@ -38,8 +38,8 @@ jobs:
         run: |
           npm ci
 #          npm install  --legacy-peer-deps
-      - run: which detox
-      - run: which react-native
+#      - run: which detox
+#      - run: which react-native
       - run: ls node_modules/.bin
       - name: Cache Pods
         id: cache-pods

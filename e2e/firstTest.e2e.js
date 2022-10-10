@@ -5,8 +5,15 @@ describe('Example', () => {
     const imagePath = await device.takeScreenshot('after launch');
   });
 
+  const sleep = async (sec) => {
+    return Promise((resolve) => {
+      setTimeout(resolve, sec * 1000);
+    });
+  };
+
   beforeEach(async () => {
-    await device.reloadReactNative();
+    // await device.reloadReactNative();
+    await sleep(10);
   });
 
   // it('should show "Ready?"', async () => {

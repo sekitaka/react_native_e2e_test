@@ -1,35 +1,20 @@
 version: 2.1
+#orbs:
+#  macos: circleci/macos@2.3.2
 orbs:
-  macos: circleci/macos@2.3.2
+  react-native: react-native-community/react-native@7.1.1
 jobs:
-  test:
+  e2e_test:
     macos:
       xcode: 13.4.1
     steps:
       - checkout
-      - run: echo HELLO2
-      - run: xcodebuild -version
-      - run: brew install watchman
-      - run: brew tap wix/brew
-      - run: brew install applesimutils
-      - restore_cache:
-          key: npm-{{ checksum "package-lock.json" }}-1
-      - run: npm ci
-      - save_cache:
-          paths:
-            - react_project/node_modules
-          key: npm-{{ checksum "package-lock.json" }}-1
-      - restore_cache:
-          key: npm-{{ checksum "ios/Podfile.lock" }}-1
-      - run:
-          command: pod install
-          working_directory: "ios"
-      - save_cache:
-          paths:
-            - ios/Pods
-          key: npm-{{ checksum "ios/Podfile.lock" }}-1
-      - run: $(npm bin)/detox build -c ios
-      - run: $(npm bin)/detox test -c ios --cleanup
+      - rn/yarn_install
+      - rn/pod_install
+      - detox_build
+        configuration: ios
+      - detox_test
+        configuration: ios
       - store_artifacts:
           path: detox_artifacts
           destination: detox_artifacts
@@ -37,4 +22,4 @@ workflows:
   version: 2.1
   test:
     jobs:
-      - test
+      - e2e_test

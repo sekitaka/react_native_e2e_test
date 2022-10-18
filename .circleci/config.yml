@@ -7,7 +7,7 @@ jobs:
       xcode: 13.4.1
     steps:
       - checkout
-      - run: echo HELLO
+      - run: echo HELLO2
       - run: xcodebuild -version
       - run: brew install watchman
       - run: brew tap wix/brew

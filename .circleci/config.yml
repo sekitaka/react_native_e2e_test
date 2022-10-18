@@ -6,8 +6,9 @@ orbs:
   react-native: react-native-community/react-native@7.1.1
 jobs:
   e2e_test:
-    macos:
-      xcode: 13.4.1
+    executor:
+      name: macos
+      xcode_version: 13.4.1
     steps:
       - checkout
       - rn/yarn_install

@@ -12,9 +12,9 @@ jobs:
       - rn/yarn_install
       - rn/pod_install
       - detox_build
-        configuration: ios
+          configuration: ios
       - detox_test
-        configuration: ios
+          configuration: ios
       - store_artifacts:
           path: detox_artifacts
           destination: detox_artifacts

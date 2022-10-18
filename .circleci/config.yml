@@ -12,10 +12,22 @@ jobs:
       - run: brew install watchman
       - run: brew tap wix/brew
       - run: brew install applesimutils
+      - restore_cache:
+          key: npm-{{ checksum "package-lock.json" }}-1
       - run: npm ci
+      - save_cache:
+          paths:
+            - react_project/node_modules
+          key: npm-{{ checksum "package-lock.json" }}-1
+      - restore_cache:
+          key: npm-{{ checksum "ios/Podfile.lock" }}-1
       - run:
           command: pod install
           working_directory: "ios"
+      - save_cache:
+          paths:
+            - ios/Pods
+          key: npm-{{ checksum "ios/Podfile.lock" }}-1
       - run: $(npm bin)/detox build -c ios
       - run: $(npm bin)/detox test -c ios --cleanup
       - store_artifacts:

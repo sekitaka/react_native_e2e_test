@@ -11,9 +11,9 @@ jobs:
       - checkout
       - rn/yarn_install
       - rn/pod_install
-      - detox_build
+      - detox_build:
           configuration: ios
-      - detox_test
+      - detox_test:
           configuration: ios
       - store_artifacts:
           path: detox_artifacts

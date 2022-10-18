@@ -42,4 +42,4 @@ workflows:
   version: 2.1
   test:
     jobs:
-      - test
+      - e2e_test

@@ -17,7 +17,7 @@ jobs:
           command: pod install
           working_directory: "ios"
       - run: $(npm bin)/detox build -c ios
-      - run: $(npm bin)/detox test -c ios --cleanup
+      - run: $(npm bin)/detox test -c ios
       - store_artifacts:
           path: detox_artifacts
           destination: detox_artifacts

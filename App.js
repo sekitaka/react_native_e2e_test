@@ -16,10 +16,18 @@ import {
   Button,
   StatusBar,
 } from 'react-native';
+import { getReceiptIOS } from "react-native-iap";
 
 const App: () => React$Node = () => {
-  const updateText = () => {
-    setText('Go');
+  const updateText = async () => {
+    try {
+      const receipt = await getReceiptIOS();
+      console.log("receipt", receipt);
+      setText('Go');
+    } catch (e){
+      console.log("ERR",e);
+      setText('NO');
+    }
   };
   const [text, setText] = useState('Ready?');
   return (

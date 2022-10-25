@@ -11,6 +11,7 @@ describe('Example', () => {
   it('should show "Ready?"', async () => {
     await expect(element(by.id('textId'))).toBeVisible();
     await expect(element(by.id('textId'))).toHaveText('Ready?');
+    const imagePath = await device.takeScreenshot('sc1');
   });
 
   it('should show "Go" after tap', async () => {

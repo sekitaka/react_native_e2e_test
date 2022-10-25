@@ -24,14 +24,14 @@ const App: () => React$Node = () => {
   };
   const [text, setText] = useState('Ready?');
 
-  (async () {
-    try {
-      const receipt = await getReceiptIOS();
-      console.log("receipt", receipt);
-    } catch (e){
-      console.log("ERR",e);
-    }
-  })();
+  // (async () {
+  //   try {
+  //     const receipt = await getReceiptIOS();
+  //     console.log("receipt", receipt);
+  //   } catch (e){
+  //     console.log("ERR",e);
+  //   }
+  // })();
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

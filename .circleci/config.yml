@@ -11,7 +11,7 @@ jobs:
       - macos/list-permissions
       - macos/preboot-simulator:
           device: iPhone 12 mini
-          version: 14.5
+          version: "14.5"
       - macos/wait-until-simulator-booted
       - checkout
       - run: xcodebuild -version

@@ -18,7 +18,7 @@
     "simulator": {
       "type": "ios.simulator",
       "device": {
-        "type": "iPhone 13 mini"
+        "type": "iPhone 12 mini"
       }
     },
     "emulator": {

@@ -16,14 +16,27 @@ import {
   Button,
   StatusBar,
 } from 'react-native';
-import { getReceiptIOS } from "react-native-iap";
+import { getPurchaseHistory, getReceiptIOS, validateReceiptIos } from "react-native-iap";
 
 const App: () => React$Node = () => {
   const updateText = async () => {
     setText('Go');
     try {
       const receipt = await getReceiptIOS();
+      // const aa = await getPurchaseHistory(); // Need to sign in with apple ID
+      // console.log("history", aa);
+
+
+
+      const receiptBody = {
+        'receipt-data': "receipt",
+        password: '69f51acc84b44940967e856f61b55652',
+      };
+
+      const result = await validateReceiptIos(receiptBody, !!null);
+
       console.log("receipt", receipt);
+      console.log("result", result);
     } catch (e){
       console.log("ERR",e);
     }

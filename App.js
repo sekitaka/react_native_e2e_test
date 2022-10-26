@@ -21,17 +21,14 @@ import { getReceiptIOS } from "react-native-iap";
 const App: () => React$Node = () => {
   const updateText = async () => {
     setText('Go');
+    try {
+      const receipt = await getReceiptIOS();
+      console.log("receipt", receipt);
+    } catch (e){
+      console.log("ERR",e);
+    }
   };
   const [text, setText] = useState('Ready?');
-
-  // (async () {
-  //   try {
-  //     const receipt = await getReceiptIOS();
-  //     console.log("receipt", receipt);
-  //   } catch (e){
-  //     console.log("ERR",e);
-  //   }
-  // })();
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

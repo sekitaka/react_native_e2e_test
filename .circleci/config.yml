@@ -6,7 +6,9 @@ jobs:
     macos:
       xcode: 13.4.1
     steps:
-      - macos/enable-vnc
+#      - macos/enable-vnc # for debug
+      - run: node -v
+      - run: npm -v
       - macos/list-permission-types
       - macos/list-permissions
       - macos/preboot-simulator:

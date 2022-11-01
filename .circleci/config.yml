@@ -1,0 +1,54 @@
+version: 2.1
+orbs:
+  macos: circleci/macos@2.3.2
+jobs:
+  e2e_test:
+    macos:
+      xcode: 13.4.1
+    steps:
+#      - macos/enable-vnc # for debug
+      - run: node -v
+      - run: npm -v
+      - macos/list-permission-types
+      - macos/list-permissions
+      - macos/preboot-simulator:
+          device: iPhone 12 mini
+          version: "14.5"
+      - macos/wait-until-simulator-booted
+      - checkout
+      - run: xcodebuild -version
+#      - run: brew install watchman
+      - run: brew tap wix/brew
+      - run: brew install applesimutils
+      - restore_cache:
+          key: npm-{{ checksum "package-lock.json" }}-1
+      - run: npm ci
+      - save_cache:
+          paths:
+            - react_project/node_modules
+          key: npm-{{ checksum "package-lock.json" }}-1
+      - restore_cache:
+          key: npm-{{ checksum "ios/Podfile.lock" }}-1
+      - run:
+          command: pod install
+          working_directory: "ios"
+      - save_cache:
+          paths:
+            - ios/Pods
+          key: npm-{{ checksum "ios/Podfile.lock" }}-1
+      - run:
+          name: detox build
+          command: $(npm bin)/detox build -c ios
+          no_output_timeout: 30m
+      - run:
+          name: detox test
+          command: $(npm bin)/detox test -c ios --cleanup
+          no_output_timeout: 30m
+      - store_artifacts:
+          path: detox_artifacts
+          destination: detox_artifacts
+workflows:
+  version: 2.1
+  test:
+    jobs:
+      - e2e_test

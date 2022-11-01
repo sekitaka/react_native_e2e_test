@@ -16,12 +16,24 @@ import {
   Button,
   StatusBar,
 } from 'react-native';
+// import {DetoxContext} from 'react-native-detox-context';
 import { getPurchaseHistory, getReceiptIOS, validateReceiptIos } from "react-native-iap";
 
-const App: () => React$Node = () => {
+const App: () => React$Node = (props) => {
   const updateText = async () => {
     setText('Go');
+    console.log("RESULT");
+    console.log(props);
+    console.log(props.hoge);
+    if (props.is_e2e === 'YES'){
+      console.log('ENV:e2e');
+    } else {
+      console.log('ENV:APP');
+    }
+    // console.log(DetoxContext.isAutomatedTest);
+    // console.log(DetoxContext.getString("hoge"));
     try {
+      console.log(process.env);
       const receipt = await getReceiptIOS();
       // const aa = await getPurchaseHistory(); // Need to sign in with apple ID
       // console.log("history", aa);

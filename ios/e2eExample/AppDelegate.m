@@ -30,11 +30,23 @@ static void InitializeFlipper(UIApplication *application) {
 #if DEBUG
   InitializeFlipper(application);
 #endif
+  
+  NSArray *processArgs = [[NSProcessInfo processInfo] arguments];
+  NSLog(@"%@",processArgs);
 
+//  id isE2e = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IS_E2E"];
+//  NSLog(@"%@",isE2e);
+//  NSDictionary *props = @{@"is_e2e" : [[NSBundle mainBundle] objectForInfoDictionaryKey:@"IS_E2E"]]
+//};
+
+  id isE2e = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"IS_E2E"];
+  NSLog(@"%@",isE2e);
+
+NSDictionary *props = @{@"is_e2e" : isE2e};
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"e2eExample"
-                                            initialProperties:nil];
+                                            initialProperties:props];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 

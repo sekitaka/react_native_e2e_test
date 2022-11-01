@@ -7,7 +7,7 @@
       "name": "e2eExample",
       "type": "ios.app",
       "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/e2eExample.app",
-      "build": "xcodebuild -workspace ios/e2eExample.xcworkspace -scheme e2eExample -sdk iphonesimulator -derivedDataPath ios/build"
+      "build": "xcodebuild -workspace ios/e2eExample.xcworkspace -scheme e2eExample -sdk iphonesimulator -derivedDataPath ios/build IS_E2E=YES"
     },
     "android": {
       "type": "android.apk",
@@ -18,7 +18,7 @@
     "simulator": {
       "type": "ios.simulator",
       "device": {
-        "type": "iPhone 12 mini"
+        "type": "iPhone 13 mini"
       }
     },
     "emulator": {

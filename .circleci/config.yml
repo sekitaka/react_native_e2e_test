@@ -15,7 +15,7 @@ jobs:
       - macos/wait-until-simulator-booted
       - checkout
       - run: xcodebuild -version
-      - run: brew install watchman
+#      - run: brew install watchman
       - run: brew tap wix/brew
       - run: brew install applesimutils
       - restore_cache:
